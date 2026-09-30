@@ -1,6 +1,6 @@
 # Observatoire du parc automobile français
 
-**Où en est la transition vers l'électrique, territoire par territoire, et à quoi ressemblera le parc dans 5 et 10 ans ?**
+**Où en est la transition vers l'électrique, territoire par territoire, et à quoi ressemblera le parc dans 5 à 10 ans ?**
 
 Projet de bout en bout sur données publiques : audit de qualité, modélisation SQL, tableau de bord et prévisions par machine learning.
 
