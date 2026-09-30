@@ -1,0 +1,115 @@
+{
+  "modele_retenu": "Consensus",
+  "horizon_valide": 5,
+  "origines_backtest": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "hypotheses": {
+    "taux_sortie": 0.05,
+    "taux_sortie_electriques": 0.01
+  },
+  "scores": {
+    "Consensus": {
+      "mae_pts": 0.3601799390806711,
+      "biais_pts": -0.2747618692945975,
+      "err_rel_med": 25.037655021360784
+    },
+    "Courbe en S": {
+      "mae_pts": 0.3886284313383594,
+      "biais_pts": -0.1276849577583235,
+      "err_rel_med": 25.48218833769011
+    },
+    "Moyenne courbe en S + XGBoost": {
+      "mae_pts": 0.39755814008638096,
+      "biais_pts": -0.03972675363069194,
+      "err_rel_med": 23.906396597734677
+    },
+    "XGBoost": {
+      "mae_pts": 0.5012192664118743,
+      "biais_pts": 0.048231450496939623,
+      "err_rel_med": 31.74630126476196
+    },
+    "Stock-flux (tendance des flux)": {
+      "mae_pts": 0.5126520589913836,
+      "biais_pts": -0.509796984958503,
+      "err_rel_med": 38.9080567496996
+    },
+    "Tendance linéaire": {
+      "mae_pts": 0.6867814210943506,
+      "biais_pts": -0.6866873959083464,
+      "err_rel_med": 53.75905516726211
+    }
+  },
+  "mae_par_horizon": {
+    "1": {
+      "Consensus": 0.07823916852910559,
+      "Courbe en S": 0.0879441529814714,
+      "Moyenne courbe en S + XGBoost": 0.054959550791911574,
+      "Stock-flux (tendance des flux)": 0.1106710663956022,
+      "Tendance linéaire": 0.1957131313721544,
+      "XGBoost": 0.04858899925005472
+    },
+    "2": {
+      "Consensus": 0.17795547017081137,
+      "Courbe en S": 0.2183319402192248,
+      "Moyenne courbe en S + XGBoost": 0.1686369501788338,
+      "Stock-flux (tendance des flux)": 0.27000096044305194,
+      "Tendance linéaire": 0.4176247049349239,
+      "XGBoost": 0.17806211175360756
+    },
+    "3": {
+      "Consensus": 0.35576734061372384,
+      "Courbe en S": 0.4696321363350854,
+      "Moyenne courbe en S + XGBoost": 0.45041165749780115,
+      "Stock-flux (tendance des flux)": 0.47501671660055717,
+      "Tendance linéaire": 0.7046410186772838,
+      "XGBoost": 0.5104340449854269
+    },
+    "4": {
+      "Consensus": 0.551967909558837,
+      "Courbe en S": 0.580147850388274,
+      "Moyenne courbe en S + XGBoost": 0.6720233261481279,
+      "Stock-flux (tendance des flux)": 0.8087937785105813,
+      "Tendance linéaire": 1.0368158777754093,
+      "XGBoost": 0.9143590101664489
+    },
+    "5": {
+      "Consensus": 0.8233117328755222,
+      "Courbe en S": 0.7341947542449109,
+      "Moyenne courbe en S + XGBoost": 0.832476050195092,
+      "Stock-flux (tendance des flux)": 1.1658760598947953,
+      "Tendance linéaire": 1.362786462691062,
+      "XGBoost": 1.1346535515884568
+    }
+  },
+  "importance_xgboost": {
+    "logit": 0.2543349862098694,
+    "dlogit_1": 0.15380586683750153,
+    "dlogit_3": 0.11470192670822144,
+    "part_hr": 0.06623084098100662,
+    "part_hnr": 0.1589123159646988,
+    "part_diesel": 0.049997150897979736,
+    "log_parc": 0.049510665237903595,
+    "croissance_parc_3": 0.08709906041622162,
+    "drom": 0.0654071718454361
+  },
+  "france_2026": 2.7611610865267764,
+  "france_2031": {
+    "part": 11.0,
+    "part_basse": 5.7,
+    "part_haute": 16.1,
+    "scen_figes": 5.1,
+    "scen_tendance": 6.3,
+    "scen_forte": 13.2
+  },
+  "france_2036": {
+    "scen_figes": 7.4,
+    "scen_tendance": 11.5,
+    "scen_forte": 35.8
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "fichier": "parc_communal.csv",
+  "lignes": 2128015,
+  "communes": 35017,
+  "parc_2026": 47280548,
+  "colonnes": 23,
+  "annees": "2011–2026",
+  "controles": [
+    {
+      "dimension": "Complétude",
+      "controle": "Noms de commune manquants",
+      "constat": "104 lignes sans nom, toutes sur des codes fictifs de DROM (97100, 97200, 97300, 97400, 97600).",
+      "valeur": 104,
+      "impact": "Faible : ces codes ne correspondent à aucune commune réelle.",
+      "decision": "Lignes exclues des analyses communales, conservées dans les totaux nationaux."
+    },
+    {
+      "dimension": "Complétude",
+      "controle": "Valeurs de parc manquantes",
+      "constat": "0 valeur manquante sur les 16 colonnes annuelles.",
+      "valeur": 0,
+      "impact": "Aucun.",
+      "decision": "Aucune correction nécessaire."
+    },
+    {
+      "dimension": "Complétude",
+      "controle": "Lignes entièrement à zéro",
+      "constat": "20 486 lignes (1,0 %) valent 0 sur toutes les années.",
+      "valeur": 20486,
+      "impact": "Aucun sur les totaux, alourdit le fichier.",
+      "decision": "Supprimées lors du passage en format long."
+    },
+    {
+      "dimension": "Unicité",
+      "controle": "Doublons sur la clé métier",
+      "constat": "0 doublon sur la clé commune × carburant × Crit'Air × statut × catégorie.",
+      "valeur": 0,
+      "impact": "Aucun.",
+      "decision": "Clé validée."
+    },
+    {
+      "dimension": "Unicité",
+      "controle": "Un code, plusieurs noms",
+      "constat": "0 code commune associé à plusieurs libellés.",
+      "valeur": 0,
+      "impact": "Aucun.",
+      "decision": "Référentiel cohérent."
+    },
+    {
+      "dimension": "Validité",
+      "controle": "Codes commune fictifs",
+      "constat": "Code 00000 « Inconnu » (1 087 véhicules en 2026) et codes 97x00 sans commune (535 véhicules).",
+      "valeur": 1622,
+      "impact": "Très faible (< 0,01 % du parc).",
+      "decision": "Exclus des analyses territoriales."
+    },
+    {
+      "dimension": "Validité",
+      "controle": "Codes « ville entière » de Paris, Lyon et Marseille",
+      "constat": "Les véhicules sont rattachés aux arrondissements, mais les codes de la ville entière subsistent avec un reliquat (Paris : 6 948, Lyon : 262, Marseille : 91 véhicules en 2026). Sur un si petit reliquat, les parts calculées sont aberrantes (12 % d'électriques pour « Paris »).",
+      "valeur": 7301,
+      "impact": "Fort sur les classements communaux.",
+      "decision": "Exclus des analyses communales, conservés dans les totaux départementaux."
+    },
+    {
+      "dimension": "Validité",
+      "controle": "Effectifs négatifs",
+      "constat": "0 valeur négative.",
+      "valeur": 0,
+      "impact": "Aucun.",
+      "decision": "Aucune correction."
+    },
+    {
+      "dimension": "Validité",
+      "controle": "Libellé mal orthographié",
+      "constat": "La modalité « Professionel » (sic) concerne 836 056 lignes.",
+      "valeur": 836056,
+      "impact": "Cosmétique.",
+      "decision": "Renommée « Professionnel »."
+    },
+    {
+      "dimension": "Cohérence",
+      "controle": "Carburant incompatible avec la vignette Crit'Air",
+      "constat": "369 lignes de voitures (ex. électrique non classée Crit'Air E), soit 1 223 véhicules-années sur l'ensemble de la période.",
+      "valeur": 369,
+      "impact": "Négligeable (< 0,001 %).",
+      "decision": "Conservées ; le carburant fait foi pour le regroupement par énergie."
+    },
+    {
+      "dimension": "Cohérence",
+      "controle": "Carburant inconnu",
+      "constat": "2 058 voitures sans carburant renseigné en 2026.",
+      "valeur": 2058,
+      "impact": "Négligeable.",
+      "decision": "Regroupées dans « Inconnu », exclues des parts d'énergie."
+    },
+    {
+      "dimension": "Exactitude",
+      "controle": "Sauts annuels de plus de 30 % dans une commune",
+      "constat": "602 sauts sur les voitures de professionnels contre 137 sur celles des particuliers. Les flottes de loueurs et de sociétés sont immatriculées au siège et changent de commune en bloc (Beauvais : 61 337 en 2020, 35 216 en 2021, 6 773 en 2026 ; Lesquin : 3 607 en 2020, 3 280 en 2021, 24 255 en 2026).",
+      "valeur": 739,
+      "impact": "Fort au niveau communal : fausse les comparaisons de territoires.",
+      "decision": "Analyses territoriales et prévisions calculées sur les voitures des particuliers."
+    },
+    {
+      "dimension": "Exactitude",
+      "controle": "Couverture incomplète à Mayotte",
+      "constat": "Le parc de voitures de Mayotte passe de 6 645 en 2011 à 29 095 en 2026 : la montée en charge de l'enregistrement se mêle à la croissance réelle.",
+      "valeur": 6645,
+      "impact": "Série non comparable dans le temps.",
+      "decision": "Mayotte affichée mais exclue de l'entraînement des modèles."
+    },
+    {
+      "dimension": "Actualité",
+      "controle": "Millésimes provisoires",
+      "constat": "Selon la note méthodologique du SDES, les parcs ne sont définitifs qu'après deux millésimes : 2025 et 2026 sont provisoires et seront révisés. Les années 2019 à 2022 ont aussi été estimées avec une méthode adaptée à la crise sanitaire.",
+      "valeur": 2,
+      "impact": "Moyen sur les dernières années.",
+      "decision": "Années signalées dans l'application ; le backtest en tient compte."
+    }
+  ]
+}
