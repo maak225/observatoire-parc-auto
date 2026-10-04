@@ -1,10 +1,10 @@
 # Observatoire du parc automobile français
 
-**Où en est la transition vers l'électrique, territoire par territoire, et à quoi ressemblera le parc dans 5 à 10 ans ?**
+**Où en est la transition vers l'électrique, territoire par territoire, et à quoi ressemblera le parc dans 5 et 10 ans ?**
 
 Projet de bout en bout sur données publiques : audit de qualité, modélisation SQL, tableau de bord et prévisions par machine learning.
 
-🔗 **Application en ligne : [lien à ajouter après déploiement](#)**
+🔗 **Application en ligne : [ouvrir l'observatoire](https://observatoire-parc-auto-6wbhq9rpgtsgfvxrcuuyjm.streamlit.app)**
 
 Réalisé par **Marie Ange Akoua Kouame**, Data Analyst · [LinkedIn](#)
 
@@ -46,28 +46,32 @@ Scénarios sur la part d'électriques parmi les voitures entrant dans le parc : 
 ## Structure du dépôt
 
 ```
-├── app/streamlit_app.py      application
-├── src/
-│   ├── referentiels.py       départements, régions, familles d'énergie
-│   ├── 01_audit.py           audit de qualité → data/audit.json, reports/audit_qualite.md
-│   ├── modele.sql            modèle de données DuckDB
-│   ├── 02_transform.py       exécute le SQL, exporte les agrégats en Parquet
-│   └── 03_previsions.py      modèles, backtest, prévisions
-├── data/                     agrégats légers utilisés par l'application
-├── reports/audit_qualite.md
-└── requirements.txt
+├── streamlit_app.py            application (lit uniquement data/)
+├── src/                        chaîne de traitement, à exécuter dans l'ordre
+│   ├── referentiels.py         départements, régions, familles d'énergie
+│   ├── 01_audit.py             audit de qualité → data/audit.json, reports/audit_qualite.md
+│   ├── modele.sql              modèle de données DuckDB
+│   ├── 02_transform.py         exécute le SQL, exporte les agrégats en Parquet
+│   └── 03_previsions.py        modèles, backtest, prévisions
+├── data/                       résultats légers (Parquet, JSON) lus par l'application
+├── reports/
+│   └── audit_qualite.md        rapport d'audit lisible
+├── requirements.txt            dépendances de l'application
+└── requirements-pipeline.txt   dépendances pour recalculer les données
 ```
+
+Le fichier brut du SDES (230 Mo) n'est pas versionné : il se télécharge sur data.gouv.fr. Les scripts de `src/` le traitent une seule fois et déposent des agrégats légers (2 Mo au total) dans `data/`. L'application ne lit que ces agrégats, ce qui la rend rapide.
 
 ## Reproduire
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-pipeline.txt   # requirements.txt suffit pour l'application seule
 # Télécharger le CSV communal du jeu « Parc de véhicules routiers » (data.gouv.fr)
 # et l'enregistrer sous data/raw/parc_communal.csv (230 Mo, non versionné)
 python src/01_audit.py
 python src/02_transform.py
 python src/03_previsions.py
-streamlit run app/streamlit_app.py
+streamlit run streamlit_app.py
 ```
 
 ## Limites
